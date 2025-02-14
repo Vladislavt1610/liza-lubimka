@@ -78,7 +78,7 @@
         }
 
         if (window.matchMedia("(pointer: coarse)").matches) {
-            noButton.style.pointerEvents = "none";
+            noButton.addEventListener("click", moveNoButton);
         } else {
             noButton.addEventListener("click", moveNoButton);
         }
