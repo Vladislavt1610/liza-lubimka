@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Признайся в любви!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe0e9;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #d63384;
+        }
+        .buttons {
+            position: relative;
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        #yes {
+            background-color: #ff4081;
+            color: white;
+        }
+        #no {
+            background-color: #ccc;
+            color: black;
+            position: absolute;
+        }
+        #result {
+            display: none;
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="question">Ты меня любишь?</h1>
+    <div class="buttons">
+        <button id="yes">Да</button>
+        <button id="no">Нет</button>
+    </div>
+    <div id="result">❤️ Я знал! ❤️</div>
+    
+    <script>
+        const noButton = document.getElementById("no");
+        const yesButton = document.getElementById("yes");
+        const result = document.getElementById("result");
+        const question = document.getElementById("question");
+
+        yesButton.addEventListener("click", () => {
+            result.style.display = "block";
+            document.querySelector(".buttons").style.display = "none";
+            question.style.display = "none";
+        });
+
+        function moveNoButton() {
+            const maxX = window.innerWidth - noButton.clientWidth;
+            const maxY = window.innerHeight - noButton.clientHeight;
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        }
+
+        if (window.matchMedia("(pointer: coarse)").matches) {
+            noButton.style.pointerEvents = "none";
+        } else {
+            noButton.addEventListener("click", moveNoButton);
+        }
+    </script>
+</body>
+</html>
